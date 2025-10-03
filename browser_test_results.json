@@ -1,0 +1,22 @@
+{
+  "basic_navigation": {
+    "status": "failed",
+    "error": "'EnhancedBrowserManager' object has no attribute 'navigate_to'"
+  },
+  "bot_detection": {
+    "status": "failed",
+    "error": "'EnhancedBrowserManager' object has no attribute 'navigate_to'"
+  },
+  "data_extraction": {
+    "status": "failed",
+    "error": "'EnhancedBrowserManager' object has no attribute 'navigate_to'"
+  },
+  "human_behavior": {
+    "status": "failed",
+    "error": "'EnhancedBrowserManager' object has no attribute 'navigate_to'"
+  },
+  "selenium_fallback": {
+    "status": "failed",
+    "error": "'EnhancedBrowserManager' object has no attribute 'navigate_to'"
+  }
+}

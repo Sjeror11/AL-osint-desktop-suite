@@ -1,0 +1,46 @@
+{
+  "proxy_manager": {
+    "status": "success",
+    "proxy_rotation": true,
+    "fingerprint_rotation": true,
+    "navigation_delay": 3.205014052898229,
+    "click_delay": 0.305615205987749,
+    "available_proxies": 3,
+    "fingerprint_profiles": 4,
+    "tor_available": true
+  },
+  "browser_integration": {
+    "status": "success",
+    "stealth_levels_tested": 3,
+    "results_by_level": {
+      "minimal": {
+        "session_created": true,
+        "anti_detection_available": false,
+        "stealth_level": "minimal",
+        "navigation_success": true,
+        "headers_extracted": true
+      },
+      "moderate": {
+        "session_created": true,
+        "anti_detection_available": true,
+        "stealth_level": "moderate",
+        "navigation_success": true,
+        "headers_extracted": true
+      },
+      "maximum": {
+        "session_created": true,
+        "anti_detection_available": true,
+        "stealth_level": "maximum",
+        "navigation_success": true,
+        "headers_extracted": true
+      }
+    }
+  },
+  "stealth_effectiveness": {
+    "status": "success",
+    "user_agent_realistic": true,
+    "headers_realistic": true,
+    "user_agent_sample": "{\n  \"user-agent\": \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) ...",
+    "overall_stealth_score": 1.0
+  }
+}

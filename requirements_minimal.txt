@@ -1,0 +1,29 @@
+# 🕵️ Desktop OSINT Investigation Suite - Minimal Dependencies
+# LakyLuk Enhanced Edition - 27.9.2025 - Quick Setup
+
+# Core Framework (essential)
+requests>=2.31.0
+python-dotenv>=1.0.0
+pyyaml>=6.0.1
+
+# GUI Framework (essential)
+# tkinter is included in Python standard library
+
+# Web Scraping (basic)
+beautifulsoup4>=4.12.0
+
+# Data Processing (basic)
+pandas>=2.1.0
+
+# Security (basic)
+cryptography>=41.0.0
+
+# Optional: Add these later for full functionality
+# aiohttp>=3.8.0           # Async HTTP
+# selenium>=4.15.0         # Browser automation
+# playwright>=1.40.0       # Modern browser control
+# anthropic>=0.7.0         # Claude AI
+# openai>=1.3.0           # GPT-4 AI
+# google-generativeai>=0.3.0  # Gemini AI
+# matplotlib>=3.7.0       # Visualization
+# reportlab>=4.0.0        # PDF generation

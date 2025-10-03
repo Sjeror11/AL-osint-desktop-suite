@@ -1,0 +1,66 @@
+# 🕵️ Desktop OSINT Investigation Suite Configuration
+# LakyLuk Enhanced Edition
+
+application:
+  name: "Desktop OSINT Investigation Suite"
+  version: "1.0.0-enhanced"
+  debug_mode: false
+  log_level: "INFO"
+
+database:
+  type: "sqlite"
+  path: "data/investigations.db"
+  backup_enabled: true
+  retention_days: 90
+
+browser:
+  headless: true
+  timeout: 30
+  user_agent_rotation: true
+  proxy_rotation: false
+  stealth_mode: true
+
+ai_models:
+  claude:
+    enabled: true
+    model: "claude-3-5-sonnet-20240620"
+    max_tokens: 4000
+
+  openai:
+    enabled: true
+    model: "gpt-4"
+    max_tokens: 4000
+
+  gemini:
+    enabled: true
+    model: "gemini-pro"
+    max_tokens: 4000
+
+  local_llm:
+    enabled: false
+    model: "ollama/llama2"
+
+investigation:
+  default_timeout_minutes: 30
+  max_concurrent_sources: 10
+  confidence_threshold: 0.7
+  stealth_level: "moderate"
+
+security:
+  encrypt_local_data: true
+  auto_sanitize_pii: true
+  secure_deletion: true
+  audit_trail: true
+
+reporting:
+  default_format: "pdf"
+  include_metadata: true
+  watermark_enabled: true
+  export_encryption: false
+
+czech_osint:
+  justice_cz_enabled: true
+  ares_enabled: true
+  cadastre_enabled: true
+  firmy_cz_enabled: true
+  reality_cz_enabled: false

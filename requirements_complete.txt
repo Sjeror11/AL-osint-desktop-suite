@@ -1,0 +1,134 @@
+# 🕵️ Desktop OSINT Investigation Suite - Complete Dependencies
+# LakyLuk Enhanced Edition - Social Media OSINT Complete
+# Updated: 3.10.2025
+
+# Core Framework
+aiohttp>=3.8.0
+requests>=2.31.0
+python-dotenv>=1.0.0
+pyyaml>=6.0.1
+sqlalchemy>=2.0.0
+asyncio-throttle>=1.0.2
+
+# GUI Framework & Widgets
+tkinter-tooltip>=1.2.1
+# Note: tkinter is built-in with Python
+
+# Web Automation & Scraping (Enhanced)
+selenium>=4.15.0
+playwright>=1.40.0
+beautifulsoup4>=4.12.0
+fake-useragent>=1.4.0
+undetected-chromedriver>=3.5.0
+selenium-stealth>=1.0.6
+
+# AI Integration (Multi-Model)
+anthropic>=0.7.0
+openai>=1.3.0
+google-generativeai>=0.3.0
+tiktoken>=0.5.0
+
+# Data Processing & Analysis (Enhanced)
+pandas>=2.1.0
+numpy>=1.24.0
+networkx>=3.1.0
+scipy>=1.11.0
+scikit-learn>=1.3.0
+
+# Machine Learning & AI Features
+face-recognition>=1.3.0
+dlib>=19.24.0
+tensorflow>=2.13.0  # Optional for advanced ML
+transformers>=4.30.0  # For NLP embeddings
+
+# Visualization (Advanced)
+matplotlib>=3.7.0
+plotly>=5.17.0
+seaborn>=0.12.0
+bokeh>=3.2.0
+dash>=2.14.0  # For interactive dashboards
+
+# Image Processing (Enhanced)
+Pillow>=10.0.0
+opencv-python>=4.8.0
+imagehash>=4.3.1
+face-recognition>=1.3.0
+
+# Text Processing & NLP
+nltk>=3.8.1
+spacy>=3.6.0
+textblob>=0.17.1
+langdetect>=1.0.9
+
+# Security & Encryption
+cryptography>=41.0.0
+requests[socks]>=2.31.0
+pycryptodome>=3.18.0
+
+# Network & Proxy (Enhanced)
+aiohttp-socks>=0.8.0
+python-socks>=2.3.0
+tor-python-easy>=0.1.0
+requests-tor>=1.0.0
+
+# Reporting & Export (Complete)
+reportlab>=4.0.0
+openpyxl>=3.1.0
+jinja2>=3.1.0
+fpdf2>=2.7.0
+weasyprint>=59.0  # For HTML to PDF
+markdown>=3.4.4
+
+# Database & Storage
+sqlite3  # Built-in
+sqlalchemy>=2.0.0
+pymongo>=4.5.0  # Optional for MongoDB
+redis>=4.6.0  # For caching
+
+# Async & Concurrency
+asyncio  # Built-in
+concurrent-futures  # Built-in
+threading  # Built-in
+multiprocessing  # Built-in
+
+# Utilities & Helpers
+tqdm>=4.66.0  # Progress bars
+colorama>=0.4.6  # Colored terminal output
+click>=8.1.0  # CLI interface
+python-dateutil>=2.8.2
+validators>=0.20.0
+user-agents>=2.2.0
+
+# Social Media Specific
+tweepy>=4.14.0  # Twitter API (optional)
+facebook-sdk>=3.1.0  # Facebook API (optional)
+linkedin-api>=2.0.0a5  # LinkedIn API (optional)
+
+# OSINT Specific Tools
+shodan>=1.28.0  # Shodan API (optional)
+censys>=2.2.0  # Censys API (optional)
+dnspython>=2.4.0
+whois>=0.9.24
+python-whois>=0.8.0
+
+# Development & Testing
+pytest>=7.4.0
+pytest-asyncio>=0.21.0
+pytest-mock>=3.11.0
+black>=23.9.0
+flake8>=6.0.0
+coverage>=7.3.0
+
+# Performance & Monitoring
+psutil>=5.9.0  # System monitoring
+memory-profiler>=0.61.0
+py-spy>=0.3.14  # Performance profiling
+
+# Optional: Local LLM Support
+# ollama>=0.1.0  # Uncomment if using local LLM
+# llama-cpp-python>=0.2.0  # Local LLM inference
+
+# Optional: Advanced Features
+# torch>=2.0.0  # For PyTorch models
+# torchvision>=0.15.0
+# sentence-transformers>=2.2.0  # Semantic embeddings

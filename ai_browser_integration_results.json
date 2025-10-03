@@ -1,0 +1,53 @@
+{
+  "initialization": {
+    "status": "success",
+    "available_models": 1,
+    "browser_available": true,
+    "model_list": [
+      "AIModelType.GPT4"
+    ]
+  },
+  "ai_selectors": {
+    "status": "success",
+    "has_selectors": true,
+    "selector_count": 4,
+    "has_contact_selector": false,
+    "sample_selectors": {
+      "title": "title, h1, h2",
+      "content": "p, div, article",
+      "links": "a[href]",
+      "images": "img[src]"
+    }
+  },
+  "web_investigation": {
+    "status": "success",
+    "urls_investigated": 2,
+    "confidence_score": 0.95,
+    "has_extracted_data": true,
+    "has_ai_analysis": true,
+    "sample_data": "{'https://httpbin.org/html': {'title': 'Herman Melville - Moby-Dick', 'content': [\"\\n        \\n          Availing himself of the mild, summer-cool weather that now reigned in these latitudes, and in p..."
+  },
+  "performance_metrics": {
+    "status": "success",
+    "has_web_stats": true,
+    "total_requests": 2,
+    "web_scraping_stats": {
+      "total_requests": 2,
+      "successful_requests": 2,
+      "failed_requests": 0
+    },
+    "full_stats": {
+      "total_investigations": 0,
+      "successful_investigations": 0,
+      "average_accuracy": 0.0,
+      "model_performance": {},
+      "web_scraping_stats": {
+        "total_requests": 2,
+        "successful_requests": 2,
+        "failed_requests": 0
+      },
+      "available_models": [
+        "AIModelType.GPT4"
+      ],
+      "model_weights": {
+        
