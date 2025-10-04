@@ -1,0 +1,67 @@
+{
+  "investigation_id": "inv_John_Doe_20251004_084559",
+  "overall_status": "completed",
+  "overall_progress": 100.0,
+  "current_phase": "initialization",
+  "phases": {
+    "initialization": {
+      "phase": "initialization",
+      "status": "completed",
+      "progress_percent": 100.0,
+      "tasks": [
+        {
+          "task_id": "initialization_0",
+          "phase": "initialization",
+          "name": "Setup workspace",
+          "description": "Create investigation workspace",
+          "status": "completed",
+          "progress_percent": 100.0,
+          "started_at": "2025-10-04T08:45:59.133981",
+          "completed_at": "2025-10-04T08:45:59.134403",
+          "duration_seconds": 0.000422,
+          "error_message": null,
+          "metadata": {}
+        },
+        {
+          "task_id": "initialization_1",
+          "phase": "initialization",
+          "name": "Validate target",
+          "description": "Validate investigation target",
+          "status": "completed",
+          "progress_percent": 100.0,
+          "started_at": "2025-10-04T08:45:59.134752",
+          "completed_at": "2025-10-04T08:45:59.135029",
+          "duration_seconds": 0.000277,
+          "error_message": null,
+          "metadata": {}
+        },
+        {
+          "task_id": "initialization_2",
+          "phase": "initialization",
+          "name": "Initialize tools",
+          "description": "Initialize OSINT tools",
+          "status": "completed",
+          "progress_percent": 100.0,
+          "started_at": "2025-10-04T08:45:59.135343",
+          "completed_at": "2025-10-04T08:45:59.135585",
+          "duration_seconds": 0.000242,
+          "error_message": null,
+          "metadata": {}
+        }
+      ],
+      "started_at": "2025-10-04T08:45:59.132568",
+      "completed_at": "2025-10-04T08:45:59.135927"
+    }
+  },
+  "metrics": {
+    "total_tasks": 3,
+    "completed_tasks": 3,
+    "failed_tasks": 0,
+    "skipped_tasks": 0,
+    "total_duration": 0.0053,
+    "average_task_duration": 0.0003136666666666667
+  },
+  "started_at": "2025-10-04T08:45:59.131011",
+  "completed_at": "2025-10-04T08:45:59.136311",
+  "duration_seconds": 0.0053
+}

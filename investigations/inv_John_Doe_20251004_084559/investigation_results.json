@@ -1,0 +1,27 @@
+{
+  "investigation_id": "inv_John_Doe_20251004_084559",
+  "target": {
+    "name": "John Doe",
+    "type": "person",
+    "location": "Prague, Czech Republic"
+  },
+  "status": "completed",
+  "started_at": "2025-10-04T08:45:59.128875",
+  "completed_at": "2025-10-04T08:45:59.136306",
+  "duration_seconds": 0.007431,
+  "web_search_results": {},
+  "social_media_results": {},
+  "government_db_results": {},
+  "correlation_results": {},
+  "ai_analysis": {},
+  "entities_found": [],
+  "confidence_score": 0.0,
+  "risk_assessment": null,
+  "recommendations": [],
+  "phases_completed": [
+    "initialization",
+    "web_search"
+  ],
+  "errors": [],
+  "warnings": []
+}

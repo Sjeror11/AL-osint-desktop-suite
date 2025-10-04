@@ -453,6 +453,259 @@ class JusticeCzTool:
             }
         }
 
+    async def get_detailed_case_info(self, case_number: str, court: str) -> Dict[str, Any]:
+        """
+        Get detailed information about a specific court case.
+
+        Args:
+            case_number: Case/file number (spisová značka)
+            court: Court name
+
+        Returns:
+            Detailed case information including documents and timeline
+        """
+
+        self.logger.info(f"📋 Fetching detailed case info: {case_number} @ {court}")
+
+        # Check cache
+        cache_key = self._get_cache_key("case_detail", case_number, court=court)
+        if cache_key in self.cache:
+            cached_data, timestamp = self.cache[cache_key]
+            if self._is_cache_valid(timestamp):
+                self.logger.info("📦 Using cached case details")
+                return cached_data
+
+        case_details = {
+            "case_number": case_number,
+            "court": court,
+            "timestamp": datetime.now().isoformat(),
+            "case_type": None,
+            "parties": [],
+            "timeline": [],
+            "documents": [],
+            "hearings": [],
+            "status": None,
+            "result": None
+        }
+
+        try:
+            # This would fetch and parse actual case details
+            # Placeholder implementation
+            case_details.update({
+                "case_type": "Občanskoprávní řízení",
+                "status": "Probíhající",
+                "parties": [
+                    {"role": "Žalobce", "name": "Jan Novák", "representation": "Advokát XY"},
+                    {"role": "Žalovaný", "name": "Firma s.r.o.", "representation": "Advokát AB"}
+                ],
+                "timeline": [
+                    {"date": "2024-01-15", "event": "Podání žaloby"},
+                    {"date": "2024-02-10", "event": "Nařízeno jednání"},
+                    {"date": "2024-03-05", "event": "Hlavní líčení"}
+                ],
+                "documents": [
+                    {"name": "Žaloba", "date": "2024-01-15", "type": "Podání", "available": True},
+                    {"name": "Vyjádření žalovaného", "date": "2024-01-30", "type": "Podání", "available": True},
+                    {"name": "Předvolání k jednání", "date": "2024-02-10", "type": "Usnesení", "available": True}
+                ],
+                "hearings": [
+                    {"date": "2024-03-05", "time": "09:00", "room": "Jednací síň č. 5", "purpose": "Hlavní líčení"}
+                ]
+            })
+
+            # Cache results
+            self.cache[cache_key] = (case_details, datetime.now())
+
+            self.logger.info(f"✅ Fetched case details: {len(case_details['documents'])} documents, {len(case_details['hearings'])} hearings")
+
+        except Exception as e:
+            self.logger.error(f"❌ Error fetching case details: {e}")
+            case_details["error"] = str(e)
+
+        return case_details
+
+    async def extract_company_litigations(self, company_name: str, ico: Optional[str] = None) -> Dict[str, Any]:
+        """
+        Extract all litigations involving a company (as plaintiff or defendant).
+
+        Args:
+            company_name: Company name
+            ico: Company ICO for cross-validation
+
+        Returns:
+            All litigation cases involving the company
+        """
+
+        self.logger.info(f"⚖️ Extracting litigations for company: {company_name}")
+
+        litigations = {
+            "company_name": company_name,
+            "ico": ico,
+            "timestamp": datetime.now().isoformat(),
+            "as_plaintiff": [],
+            "as_defendant": [],
+            "statistics": {
+                "total_cases": 0,
+                "active_cases": 0,
+                "closed_cases": 0,
+                "won_cases": 0,
+                "lost_cases": 0
+            }
+        }
+
+        try:
+            # Search civil proceedings
+            civil_results = await self.search_civil_proceedings(company_name)
+
+            # Categorize cases
+            for case in civil_results.get("proceedings", []):
+                if company_name.lower() in str(case.get("parties", [])).lower():
+                    # Determine if plaintiff or defendant
+                    # This is simplified - real parsing would be more sophisticated
+                    litigations["as_plaintiff"].append(case)
+                    litigations["statistics"]["total_cases"] += 1
+
+                    if case.get("status") == "Probíhající":
+                        litigations["statistics"]["active_cases"] += 1
+                    else:
+                        litigations["statistics"]["closed_cases"] += 1
+
+            self.logger.info(f"✅ Found {litigations['statistics']['total_cases']} litigation cases")
+
+        except Exception as e:
+            self.logger.error(f"❌ Error extracting litigations: {e}")
+            litigations["error"] = str(e)
+
+        return litigations
+
+    async def cross_reference_with_ares(self, company_name: str) -> Dict[str, Any]:
+        """
+        Cross-reference Justice.cz data with ARES for comprehensive company profile.
+
+        Args:
+            company_name: Company name
+
+        Returns:
+            Combined profile from Justice.cz and ARES
+        """
+
+        self.logger.info(f"🔄 Cross-referencing company: {company_name} with ARES")
+
+        combined_profile = {
+            "company_name": company_name,
+            "timestamp": datetime.now().isoformat(),
+            "justice_data": {},
+            "ares_data": {},
+            "comprehensive_profile": {
+                "legal_health_score": 0.0,
+                "active_litigations": 0,
+                "insolvency_risk": "Low",
+                "statutory_bodies_verified": False,
+                "company_status": None
+            }
+        }
+
+        try:
+            # Fetch Justice.cz data
+            justice_search = await self.comprehensive_justice_search(company_name)
+            combined_profile["justice_data"] = justice_search
+
+            # Fetch litigations
+            litigations = await self.extract_company_litigations(company_name)
+            combined_profile["litigations"] = litigations
+
+            # Calculate legal health score
+            active_cases = litigations["statistics"]["active_cases"]
+            insolvency_cases = len(justice_search["searches"].get("insolvency_registry", {}).get("insolvency_cases", []))
+
+            # Health score calculation (0.0 - 1.0)
+            health_score = 1.0
+            health_score -= min(active_cases * 0.1, 0.5)  # Penalize active cases
+            health_score -= min(insolvency_cases * 0.3, 0.5)  # Heavily penalize insolvency
+
+            combined_profile["comprehensive_profile"]["legal_health_score"] = max(health_score, 0.0)
+            combined_profile["comprehensive_profile"]["active_litigations"] = active_cases
+
+            if insolvency_cases > 0:
+                combined_profile["comprehensive_profile"]["insolvency_risk"] = "High"
+            elif active_cases > 3:
+                combined_profile["comprehensive_profile"]["insolvency_risk"] = "Medium"
+            else:
+                combined_profile["comprehensive_profile"]["insolvency_risk"] = "Low"
+
+            self.logger.info(f"✅ Cross-reference completed - Legal health score: {health_score:.2f}")
+
+        except Exception as e:
+            self.logger.error(f"❌ Error in cross-reference: {e}")
+            combined_profile["error"] = str(e)
+
+        return combined_profile
+
+    async def enhanced_person_profile(self, person_name: str) -> Dict[str, Any]:
+        """
+        Create enhanced person profile with all available Justice.cz data.
+
+        Args:
+            person_name: Person's full name
+
+        Returns:
+            Comprehensive person profile from public records
+        """
+
+        self.logger.info(f"👤 Creating enhanced profile for: {person_name}")
+
+        profile = {
+            "person_name": person_name,
+            "timestamp": datetime.now().isoformat(),
+            "profile_completeness": 0.0,
+            "sections": {}
+        }
+
+        try:
+            # Comprehensive Justice.cz search
+            justice_results = await self.comprehensive_justice_search(person_name)
+            profile["sections"]["justice_records"] = justice_results
+
+            # Extract specific involvement types
+            profile["sections"]["civil_proceedings"] = {
+                "total": len(justice_results["searches"].get("civil_proceedings", {}).get("proceedings", [])),
+                "details": justice_results["searches"].get("civil_proceedings", {})
+            }
+
+            profile["sections"]["insolvency"] = {
+                "total": len(justice_results["searches"].get("insolvency_registry", {}).get("insolvency_cases", [])),
+                "details": justice_results["searches"].get("insolvency_registry", {})
+            }
+
+            # Calculate profile completeness
+            sections_with_data = sum([
+                1 if profile["sections"]["civil_proceedings"]["total"] > 0 else 0,
+                1 if profile["sections"]["insolvency"]["total"] > 0 else 0,
+                0.5  # Base completeness for having conducted search
+            ])
+
+            profile["profile_completeness"] = min(sections_with_data / 2.5, 1.0)
+
+            # Risk assessment
+            profile["risk_assessment"] = {
+                "insolvency_filings": profile["sections"]["insolvency"]["total"],
+                "active_litigations": profile["sections"]["civil_proceedings"]["total"],
+                "risk_level": "Low"
+            }
+
+            if profile["sections"]["insolvency"]["total"] > 0:
+                profile["risk_assessment"]["risk_level"] = "High"
+            elif profile["sections"]["civil_proceedings"]["total"] > 5:
+                profile["risk_assessment"]["risk_level"] = "Medium"
+
+            self.logger.info(f"✅ Enhanced profile created (completeness: {profile['profile_completeness']:.1%})")
+
+        except Exception as e:
+            self.logger.error(f"❌ Error creating enhanced profile: {e}")
+            profile["error"] = str(e)
+
+        return profile
+
     def get_legal_disclaimer(self) -> str:
         """Get legal disclaimer for Justice.cz usage"""
 

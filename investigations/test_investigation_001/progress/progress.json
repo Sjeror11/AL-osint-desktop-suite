@@ -1,0 +1,93 @@
+{
+  "investigation_id": "test_investigation_001",
+  "overall_status": "completed",
+  "overall_progress": 50.0,
+  "current_phase": "web_search",
+  "phases": {
+    "web_search": {
+      "phase": "web_search",
+      "status": "completed",
+      "progress_percent": 100.0,
+      "tasks": [
+        {
+          "task_id": "web_search_0",
+          "phase": "web_search",
+          "name": "Google Search",
+          "description": "Search Google for target",
+          "status": "completed",
+          "progress_percent": 100.0,
+          "started_at": "2025-10-04T08:44:10.583071",
+          "completed_at": "2025-10-04T08:44:12.584859",
+          "duration_seconds": 2.001788,
+          "error_message": null,
+          "metadata": {
+            "results_found": 42
+          }
+        },
+        {
+          "task_id": "web_search_1",
+          "phase": "web_search",
+          "name": "Bing Search",
+          "description": "Search Bing for target",
+          "status": "completed",
+          "progress_percent": 100.0,
+          "started_at": "2025-10-04T08:44:12.585821",
+          "completed_at": "2025-10-04T08:44:13.592955",
+          "duration_seconds": 1.007134,
+          "error_message": null,
+          "metadata": {
+            "results_found": 38
+          }
+        }
+      ],
+      "started_at": "2025-10-04T08:44:10.582356",
+      "completed_at": "2025-10-04T08:44:13.594466"
+    },
+    "social_media": {
+      "phase": "social_media",
+      "status": "pending",
+      "progress_percent": 0.0,
+      "tasks": [
+        {
+          "task_id": "social_media_0",
+          "phase": "social_media",
+          "name": "Facebook Scan",
+          "description": "Scan Facebook profiles",
+          "status": "pending",
+          "progress_percent": 0.0,
+          "started_at": null,
+          "completed_at": null,
+          "duration_seconds": 0.0,
+          "error_message": null,
+          "metadata": {}
+        },
+        {
+          "task_id": "social_media_1",
+          "phase": "social_media",
+          "name": "LinkedIn Scan",
+          "description": "Scan LinkedIn profiles",
+          "status": "pending",
+          "progress_percent": 0.0,
+          "started_at": null,
+          "completed_at": null,
+          "duration_seconds": 0.0,
+          "error_message": null,
+          "metadata": {}
+        }
+      ],
+      "started_at": null,
+      "completed_at": null
+    }
+  },
+  "metrics": {
+    "total_tasks": 4,
+    "completed_tasks": 2,
+    "failed_tasks": 0,
+    "skipped_tasks": 0,
+    "total_duration": 3.014698,
+    "average_task_duration": 1.504461
+  },
+  "started_at": "2025-10-04T08:44:10.581650",
+  "completed_at": "2025-10-04T08:44:13.596348",
+  "duration_seconds": 3.014698
+}
